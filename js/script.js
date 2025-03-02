@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', async (params) => {
 
     await loadTasks();
 
-    addTaskBtn.addEventListener('click', ()=>{
-        addTask().then(saveTasks); // Promesa y Async/await
+    addTaskBtn.addEventListener('click', async ()=>{
+        await addTask();
+        saveTasks(); // Promesa y Async/await
     });
 
     // Este es el manejo de Formularios
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', async (params) => {
 
     async function addTask() {
         const taskText = newTaskInput.value.trim();
+        if (!taskText) return;
 
         const taskElement = document.createElement('div');
         taskElement.className = 'list-group-item d-flex justify-content-between align-items-center';
